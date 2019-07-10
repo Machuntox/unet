@@ -37,7 +37,7 @@ def adjustData(img,mask,flag_multi_class,num_class):
         new_mask = np.reshape(new_mask,(new_mask.shape[0],new_mask.shape[1]*new_mask.shape[2],new_mask.shape[3])) if flag_multi_class else np.reshape(new_mask,(new_mask.shape[0]*new_mask.shape[1],new_mask.shape[2]))
         mask = new_mask
     elif(np.max(img) > 1):
-        img = img / 255
+        img = img / 255.
         mask = mask /255
         mask[mask > 0.5] = 1
         mask[mask <= 0.5] = 0
@@ -85,7 +85,7 @@ def trainGenerator(batch_size,train_path,image_folder,mask_folder,aug_dict,image
 def testGenerator(test_path,num_image = 30,target_size = (256,256),flag_multi_class = False,as_gray = True):
     for i in range(num_image):
         img = io.imread(os.path.join(test_path,"%d.png"%i),as_gray = as_gray)
-        img = img / 255
+        img = img / 255.
         img = trans.resize(img,target_size)
         img = np.reshape(img,img.shape+(1,)) if (not flag_multi_class) else img
         img = np.reshape(img,(1,)+img.shape)
