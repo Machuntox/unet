@@ -25,7 +25,7 @@ COLOR_DICT = np.array([Sky, Building, Pole, Road, Pavement,
 
 def adjustData(img,mask,flag_multi_class,num_class):
     if(flag_multi_class):
-        img = img / 255
+        img = img / 255.
         mask = mask[:,:,:,0] if(len(mask.shape) == 4) else mask[:,:,0]
         new_mask = np.zeros(mask.shape + (num_class,))
         for i in range(num_class):
