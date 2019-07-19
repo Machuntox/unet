@@ -5,7 +5,7 @@ import os
 import glob
 import skimage.io as io
 import skimage.transform as trans
-from skimage
+import skimage
 
 Sky = [128,128,128]
 Building = [128,0,0]
