@@ -35,16 +35,16 @@ def preprocessImage():
 
 
 def preprocessLayer():
-    folder = 'data/JOSM/train/labelCropped'
+    folder = '/content/cloned-repo/data/JOSM/train/labelCropped'
 
-    for image_path in os.listdir(folder):
-        img = Image.open(folder + '/' + image_path)
-        inverted_img_pixels = np.ndarray(shape=(img.size[0], img.size[1]), dtype=float)
-        for x in range(0, img.size[0]):
-            for y in range(0, img.size[1]):
-                pixel = img.getpixel((x, y))
-                inverted_img_pixels[x][y] = 255 if pixel == (0,0,0) else 0
-        plt.imsave('data/JOSM/train/label/' + image_path, inverted_img_pixels, cmap=cm.gray)
+	for image_path in os.listdir(folder):
+		img = Image.open(folder + '/' + image_path)
+		inverted_img_pixels = np.ndarray(shape=(img.size[0], img.size[1]), dtype=float)
+		for y in range(0, img.size[0]):
+			for x in range(0, img.size[1]):
+			pixel = img.getpixel((x, y))
+			inverted_img_pixels[y][x] = 255 if pixel == (0,0,0) else 0
+		plt.imsave('/content/cloned-repo/data/JOSM/train/label/' + image_path, inverted_img_pixels, cmap=cm.gray)
 
 cropImages = cropImages()
 preprocessImage = preprocessImage()
