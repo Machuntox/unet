@@ -39,7 +39,7 @@ def adjustData(img,mask,flag_multi_class,num_class):
         mask = new_mask
     elif(np.max(img) > 1):
         img = img / 255.
-        mask = mask /255
+        mask = mask /255.
         mask[mask > 0.5] = 1
         mask[mask <= 0.5] = 0
     return (img,mask)
