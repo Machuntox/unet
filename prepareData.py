@@ -38,7 +38,7 @@ def preprocessLayer():
 		for y in range(0, img.size[0]):
 			for x in range(0, img.size[1]):
 				pixel = img.getpixel((x, y))
-				inverted_img_pixels[y][x] = 0 if pixel == (0,0,0) else 1
+				inverted_img_pixels[y][x] = 0 if pixel == (0,0,0) else 200
 		plt.imsave('data/JOSM/train/label/' + image_path, inverted_img_pixels, cmap=cm.gray)
 
 cropImages = cropImages()
