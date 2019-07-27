@@ -54,7 +54,7 @@ def unet(pretrained_weights = None,input_size = (256,256,1)):
 
     model = Model(inputs = inputs, outputs = conv10)
 
-    model.compile(optimizer = Adam(lr = 1e-5), loss = 'dice_coef_loss', metrics = ['accuracy'])
+    model.compile(optimizer = Adam(lr = 1e-5), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     #model.summary()
 
@@ -93,7 +93,7 @@ def unetSmall(pretrained_weights = None,input_size = (256,256,1)):
 
     model = Model(inputs = inputs, outputs = conv6)
 
-    model.compile(optimizer = Adam(lr = 1e-5), loss = 'dice_coef_loss', metrics = ['accuracy'])
+    model.compile(optimizer = Adam(lr = 1e-5), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     #model.summary()
 
@@ -170,7 +170,7 @@ def unetNorm(pretrained_weights = None,input_size = (256,256,1)):
 
     model = Model(inputs = inputs, outputs = conv10)
 
-    model.compile(optimizer = Adam(lr = 1e-5), loss = 'dice_coef_loss', metrics = ['accuracy'])
+    model.compile(optimizer = Adam(lr = 1e-5), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     #model.summary()
 
