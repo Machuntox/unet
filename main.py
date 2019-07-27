@@ -1,7 +1,7 @@
 from model import *
 from data import *
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+#os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 
 data_gen_args = dict(rotation_range=0.2,
