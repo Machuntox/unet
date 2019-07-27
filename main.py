@@ -13,12 +13,12 @@ data_gen_args = dict(rotation_range=0.2,
                     fill_mode='nearest')
 myGene = trainGenerator(2,'data/JOSM/train','image','label',data_gen_args,save_to_dir = None)
 
-model = unetNorm()
+parallel_model = unetNorm()
 model_checkpoint = ModelCheckpoint('unet_membrane.hdf5', monitor='loss',verbose=1, save_best_only=True)
-model.fit_generator(myGene,steps_per_epoch=30,epochs=2000,callbacks=[model_checkpoint])
+parallel_model.fit_generator(myGene,steps_per_epoch=30,epochs=2000,callbacks=[model_checkpoint])
 
 testGene = testGenerator("data/JOSM/test")
-model = unetNorm()
-model.load_weights("unet_membrane.hdf5")
-results = model.predict_generator(testGene,1,verbose=1)
+parallel_model = unetNorm()
+parallel_model.load_weights("unet_membrane.hdf5")
+results = parallel_model.predict_generator(testGene,1,verbose=1)
 saveResult("data/JOSM/result",results)
