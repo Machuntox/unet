@@ -56,7 +56,7 @@ def unet(pretrained_weights = None,input_size = (256,256,1)):
     conv10 = Conv2D(1, 1, activation = 'sigmoid')(conv9)
 
     model = Model(inputs = inputs, outputs = conv10)
-    parallel_model = keras.utils.multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
+    parallel_model = multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
 
     parallel_model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
@@ -96,7 +96,7 @@ def unetSmall(pretrained_weights = None,input_size = (256,256,1)):
     conv6 = Conv2D(1, 1, activation = 'sigmoid')(conv5)
 
     model = Model(inputs = inputs, outputs = conv6)
-    parallel_model = keras.utils.multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
+    parallel_model = multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
 
     parallel_model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
@@ -174,7 +174,7 @@ def unetNorm(pretrained_weights = None,input_size = (256,256,1)):
     #conv10 = BatchNormalization()(conv10)
 
     model = Model(inputs = inputs, outputs = conv10)
-    parallel_model = keras.utils.multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
+    parallel_model = multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
 
     parallel_model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
