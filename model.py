@@ -8,6 +8,8 @@ from keras.layers import *
 from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras import backend as keras
+from keras.utils import multi_gpu_model
+
 
 
 def unet(pretrained_weights = None,input_size = (256,256,1)):
@@ -53,8 +55,9 @@ def unet(pretrained_weights = None,input_size = (256,256,1)):
     conv10 = Conv2D(1, 1, activation = 'sigmoid')(conv9)
 
     model = Model(inputs = inputs, outputs = conv10)
+    parallel_model = keras.utils.multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
 
-    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
+    parallel_model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     #model.summary()
 
@@ -92,8 +95,9 @@ def unetSmall(pretrained_weights = None,input_size = (256,256,1)):
     conv6 = Conv2D(1, 1, activation = 'sigmoid')(conv5)
 
     model = Model(inputs = inputs, outputs = conv6)
+    parallel_model = keras.utils.multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
 
-    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
+    parallel_model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     #model.summary()
 
@@ -169,8 +173,9 @@ def unetNorm(pretrained_weights = None,input_size = (256,256,1)):
     #conv10 = BatchNormalization()(conv10)
 
     model = Model(inputs = inputs, outputs = conv10)
+    parallel_model = keras.utils.multi_gpu_model(model, gpus=None, cpu_merge=True, cpu_relocation=False)
 
-    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
+    parallel_model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
     
     #model.summary()
 
