@@ -25,7 +25,7 @@ def preprocessImage():
 	folder = 'data/JOSM/train/imageCropped'
 
 	for image_name in os.listdir(folder):
-		img = Image.open(folder + '/' + image_name).convert('LA')
+		img = Image.open(folder + '/' + image_name).convert('L')
 		img.save('data/JOSM/train/image/' + image_name)
 
 
