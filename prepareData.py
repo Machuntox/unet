@@ -34,12 +34,16 @@ def preprocessLayer():
 
 	for image_path in os.listdir(folder):
 		img = Image.open(folder + '/' + image_path)
-		inverted_img_pixels = np.ndarray(shape=(img.size[0], img.size[1]), dtype=float)
-		for y in range(0, img.size[0]):
-			for x in range(0, img.size[1]):
-				pixel = img.getpixel((x, y))
-				inverted_img_pixels[y][x] = 0 if pixel == (0,0,0) else 1
-		plt.imsave('data/JOSM/train/label/' + image_path, inverted_img_pixels, cmap=cm.gray)
+		img = img.convert("RGBA")
+		pixdata = img.load()
+
+		for y in range(img.size[1]):
+			for x in range(img.size[0]):
+				if pixdata[x, y] == (0, 0, 0, 255):
+					pixdata[x, y] = (0, 0, 0, 255)
+				else:
+					pixdata[x, y] = (255, 255, 255, 255)
+		img.save('data/JOSM/train/label/' + image_path,'PNG')
 
 cropImages = cropImages()
 preprocessImage = preprocessImage()
