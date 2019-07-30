@@ -15,7 +15,7 @@ myGene = trainGenerator(2,'data/JOSM/train','image','label',data_gen_args,save_t
 
 model = unetNorm()
 model_checkpoint = ModelCheckpoint('unet_membrane.hdf5', monitor='loss',verbose=1, save_best_only=True)
-model.fit_generator(myGene,steps_per_epoch=50,epochs=3000,callbacks=[model_checkpoint])
+model.fit_generator(myGene,steps_per_epoch=50,epochs=5000,callbacks=[model_checkpoint])
 
 testGene = testGenerator("data/JOSM/test")
 model = unetNorm()
