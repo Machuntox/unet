@@ -10,16 +10,14 @@ def cropImages():
 	imageFolder = 'data/JOSM/train/imgRaw'
 	labelFolder = 'data/JOSM/train/labelRaw'
 
+	for counter in range(1508):
+		image = Image.open(imageFolder + '/image' + str(counter) + '.png')
+		croppedImage = image.crop((0, 0, 512, 512))
+		croppedImage.save('data/JOSM/train/imageCropped/' + str(counter) + '.png')
 
-	for image_name in os.listdir(imageFolder):
-		image_obj = Image.open(imageFolder + '/' + image_name)
-		cropped_image = image_obj.crop((0, 0, 512, 512)) #(x1, y1, x2,y2)
-		cropped_image.save('data/JOSM/train/imageCropped/' + image_name)
-		
-	for image_name in os.listdir(labelFolder):
-		image_obj = Image.open(labelFolder + '/' + image_name)
-		cropped_image = image_obj.crop((0, 0, 512, 512)) #(x1, y1, x2,y2)
-		cropped_image.save('data/JOSM/train/labelCropped/' + image_name)
+		label = Image.open(labelFolder + '/layer' + str(counter) + '.png')
+		croppedLabel = label.crop((0, 0, 512, 512))
+		croppedImage.save('data/JOSM/train/labelCropped/' + str(counter) + '.png')
 
 def preprocessImage():
 	folder = 'data/JOSM/train/imageCropped'
