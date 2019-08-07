@@ -7,7 +7,7 @@ import PIL.ImageOps
 import os
 
 def cropImages():
-	imageFolder = 'data/JOSM/train/imageRaw'
+	imageFolder = 'data/JOSM/train/imgRaw'
 	labelFolder = 'data/JOSM/train/labelRaw'
 
 
